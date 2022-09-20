@@ -32,7 +32,7 @@ SELECT 1
 --     ('Street 6', 'City 6', '56556');
 --
 -- -- USERS
--- INSERT INTO lab3_user(email, first_name, last_name, address_id)
+-- INSERT INTO lab5_user(email, first_name, last_name, address_id)
 -- VALUES
 --     ('phat@gmail.com', 'Phong', 'Lu', 1),
 --     ('john@gmail.com', 'John', 'Smith', 2),
