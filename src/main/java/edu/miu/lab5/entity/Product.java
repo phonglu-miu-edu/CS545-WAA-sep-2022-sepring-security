@@ -1,5 +1,6 @@
 package edu.miu.lab5.entity;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -17,5 +18,14 @@ public class Product {
 
     @ManyToOne
     private Category category;
+
+    @OneToOne
+    @JsonManagedReference
+    private User user;
+
+    public void setUser(User user) {
+        this.user = user;
+        user.setProduct(this);
+    }
 
 }

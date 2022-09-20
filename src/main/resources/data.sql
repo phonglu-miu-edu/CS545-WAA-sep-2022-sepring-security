@@ -1,62 +1,49 @@
-SELECT 1
--- -- CATEGORY
--- INSERT INTO category(name)
--- VALUES
---     ('Computer'),
---     ('Mobile Phone'),
---     ('Laptop'),
---     ('Accessory');
---
--- -- PRODUCT
--- INSERT INTO product(name, price, rating, category_id)
--- VALUES
---     ('Product-name-1', 20, 4, 1),
---     ('Product-name-2', 30, 5, 1),
---     ('Product-name-3', 40, 6, 1),
---     ('Product-name-4', 50, 4, 1),
---     ('Product-name-5', 30.3, 1, 1),
---     ('Product-name-6', 20, 4, 2),
---     ('Product-name-7', 30, 5, 2),
---     ('Product-name-8', 40, 6, 2),
---     ('Product-name-9', 50, 4, 2),
---     ('Product-name-10', 30.3, 1, 2);
---
--- -- ADDRESS
--- INSERT INTO address(street, city, zip)
--- VALUES
---     ('Street 1', 'City 1', '56551'),
---     ('Street 2', 'City 2', '56552'),
---     ('Street 3', 'City 3', '56553'),
---     ('Street 4', 'City 4', '56554'),
---     ('Street 5', 'City 5', '56555'),
---     ('Street 6', 'City 6', '56556');
---
--- -- USERS
--- INSERT INTO lab5_user(email, first_name, last_name, address_id)
--- VALUES
---     ('phat@gmail.com', 'Phong', 'Lu', 1),
---     ('john@gmail.com', 'John', 'Smith', 2),
---     ('david@gmail.com', 'David', 'Nguyen', 3),
---     ('smith@gmail.com', 'Smith', 'Nguyen', 4),
---     ('adam@gmail.com', 'Adam', 'John', 5),
---     ('michael@gmail.com', 'Michael', 'Mike', 6);
---
--- -- REVIEWS
--- INSERT INTO review(comment, user_id)
--- VALUES
---     ('Comment 1', 1),
---     ('Comment 2', 1),
---     ('Comment 3', 1),
---     ('Comment 4', 2),
---     ('Comment 5', 2),
---     ('Comment 6', 3),
---     ('Comment 7', 4),
---     ('Comment 8', 4),
---     ('Comment 9', 4),
---     ('Comment 10', 5),
---     ('Comment 11', 5),
---     ('Comment 12', 5),
---     ('Comment 13', 6),
---     ('Comment 14', 6),
---     ('Comment 15', 6),
---     ('Comment 16', 6);
+-- CATEGORY
+INSERT INTO category(name)
+VALUES
+    ('Computer'),
+    ('Mobile Phone'),
+    ('Laptop'),
+    ('Accessory');
+
+
+-- USERS
+INSERT INTO lab5_user(email, first_name, last_name, password)
+VALUES
+    ('phonglu@gmail.com', 'Phong', 'Lu', '$2a$10$u5xPEnqTU3lcPPItCotEf./kp4k2zj4Q9Mnko5W4nBca4pvhLs7Zq'),
+    ('john@gmail.com', 'John', 'Smith', '$2a$10$u5xPEnqTU3lcPPItCotEf./kp4k2zj4Q9Mnko5W4nBca4pvhLs7Zq'),
+    ('david@gmail.com', 'David', 'Nguyen', '$2a$10$u5xPEnqTU3lcPPItCotEf./kp4k2zj4Q9Mnko5W4nBca4pvhLs7Zq'),
+    ('smith@gmail.com', 'Smith', 'Nguyen', '$2a$10$u5xPEnqTU3lcPPItCotEf./kp4k2zj4Q9Mnko5W4nBca4pvhLs7Zq'),
+    ('adam@gmail.com', 'Adam', 'John', '$2a$10$u5xPEnqTU3lcPPItCotEf./kp4k2zj4Q9Mnko5W4nBca4pvhLs7Zq'),
+    ('michael@gmail.com', 'Michael', 'Mike', '$2a$10$u5xPEnqTU3lcPPItCotEf./kp4k2zj4Q9Mnko5W4nBca4pvhLs7Zq');
+
+-- ROLE
+INSERT INTO role(role)
+VALUES
+    ('ADMIN'),
+    ('USER');
+
+INSERT INTO lab5_users_roles(user_id, roles_id)
+VALUES
+    (1, 1),
+    (1, 2),
+    (2, 1),
+    (3, 1),
+    (4, 2),
+    (5, 2),
+    (5, 1),
+    (6, 2);
+
+-- PRODUCT
+INSERT INTO product(name, price, rating, category_id, user_id)
+VALUES
+    ('Product-name-1', 20, 4, 1, 1),
+    ('Product-name-2', 30, 5, 1, 1),
+    ('Product-name-3', 40, 6, 1, 1),
+    ('Product-name-4', 50, 4, 1, 2),
+    ('Product-name-5', 30.3, 1, 1, 2),
+    ('Product-name-6', 20, 4, 2, 3),
+    ('Product-name-7', 30, 5, 2, 3),
+    ('Product-name-8', 40, 6, 2, 4),
+    ('Product-name-9', 50, 4, 2, 5),
+    ('Product-name-10', 30.3, 1, 2, 6);

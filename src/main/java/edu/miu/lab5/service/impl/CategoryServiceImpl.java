@@ -4,21 +4,18 @@ import edu.miu.lab5.dto.CategoryDto;
 import edu.miu.lab5.entity.Category;
 import edu.miu.lab5.repo.CategoryRepo;
 import edu.miu.lab5.service.CategoryService;
+import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
+@RequiredArgsConstructor
 public class CategoryServiceImpl implements CategoryService {
 
     private final CategoryRepo categoryRepo;
     private final ModelMapper modelMapper;
-
-    public CategoryServiceImpl(CategoryRepo categoryRepo, ModelMapper modelMapper) {
-        this.categoryRepo = categoryRepo;
-        this.modelMapper = modelMapper;
-    }
 
     @Override
     public List<CategoryDto> findAll() {

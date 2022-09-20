@@ -7,6 +7,7 @@ import edu.miu.lab5.entity.Product;
 import edu.miu.lab5.repo.CategoryRepo;
 import edu.miu.lab5.repo.ProductRepo;
 import edu.miu.lab5.service.ProductService;
+import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
@@ -14,17 +15,12 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
+@RequiredArgsConstructor
 public class ProductServiceImpl implements ProductService {
 
     private final CategoryRepo categoryRepo;
     private final ProductRepo productRepo;
     private final ModelMapper modelMapper;
-
-    public ProductServiceImpl(CategoryRepo categoryRepo, ProductRepo productRepo, ModelMapper modelMapper) {
-        this.categoryRepo = categoryRepo;
-        this.productRepo = productRepo;
-        this.modelMapper = modelMapper;
-    }
 
     @Override
     public List<ProductDto> findAll() {
