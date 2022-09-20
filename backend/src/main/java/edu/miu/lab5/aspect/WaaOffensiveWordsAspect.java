@@ -7,7 +7,7 @@ import edu.miu.lab5.entity.User;
 import edu.miu.lab5.model.UserDetailsAdapter;
 import edu.miu.lab5.repo.RequestLimiterRepo;
 import edu.miu.lab5.repo.UserRepo;
-import edu.miu.lab5.service.OffensiveWordAuditService;
+import edu.miu.lab5.service.OffensiveWordService;
 import lombok.RequiredArgsConstructor;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
@@ -30,17 +30,17 @@ public class WaaOffensiveWordsAspect {
 
     private static final Set<String> OFFENSIVE_WORDS = Stream.of("spring", "reactjs").collect(Collectors.toSet());
 
-    private final OffensiveWordAuditService offensiveWordAuditService;
+    private final OffensiveWordService offensiveWordService;
 
     private final RequestLimiterRepo requestLimiterRepo;
     private final UserRepo userRepo;
 
-    @Pointcut("@annotation(edu.miu.lab5.annotation.InspectOffense)")
-    public void inspectOffenseAnnotation() {
+    @Pointcut("@annotation(edu.miu.lab5.annotation.InspectOffensiveWords)")
+    public void inspectOffensiveWordsAnnotation() {
 
     }
 
-    @Around("inspectOffenseAnnotation()")
+    @Around("inspectOffensiveWordsAnnotation()")
     public Object maskOutOffensiveWords(ProceedingJoinPoint proceedingJoinPoint) throws Throwable {
         Object[] args = proceedingJoinPoint.getArgs();
         Set<Review> reviews = (Set<Review>) args[0];
@@ -69,7 +69,7 @@ public class WaaOffensiveWordsAspect {
                 throw new RuntimeException("Max Bad Words Requests Limit has been Reached. You need wait for " + time + " minutes.");
             }
 
-            Set<OffensiveWordAudit> offensiveWordsAudits = offensiveWordAuditService.findByLast30Minutes(user.getId());
+            Set<OffensiveWordAudit> offensiveWordsAudits = offensiveWordService.findByLast30Minutes(user.getId());
 
             if(offensiveWordsAudits.size() >= 5) {
                 requestLimiterRepo.save(RequestLimiter.builder()
@@ -84,7 +84,7 @@ public class WaaOffensiveWordsAspect {
                     .user(user)
                     .build();
 
-            offensiveWordAuditService.save(offensiveWordsAudit);
+            offensiveWordService.save(offensiveWordsAudit);
         }
 
         return proceedingJoinPoint.proceed();

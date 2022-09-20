@@ -2,7 +2,7 @@ package edu.miu.lab5.service.impl;
 
 import edu.miu.lab5.entity.OffensiveWordAudit;
 import edu.miu.lab5.repo.OffensiveWordsAuditRepo;
-import edu.miu.lab5.service.OffensiveWordAuditService;
+import edu.miu.lab5.service.OffensiveWordService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -12,7 +12,7 @@ import java.util.Set;
 
 @Service
 @RequiredArgsConstructor
-public class OffensiveWordAuditServiceImpl implements OffensiveWordAuditService {
+public class OffensiveWordServiceImpl implements OffensiveWordService {
 
     private final OffensiveWordsAuditRepo offensiveWordsAuditRepo;
 

@@ -4,7 +4,7 @@ import edu.miu.lab5.entity.OffensiveWordAudit;
 
 import java.util.Set;
 
-public interface OffensiveWordAuditService {
+public interface OffensiveWordService {
 
     void save(OffensiveWordAudit offensiveWordAudit);
 
